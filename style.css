@@ -1,0 +1,808 @@
+:root{
+    --bg: #fff7f9;
+    --card: #fff;
+    --accent: #f7a8b8;
+    --accent-2: #ffd6e0;
+    --muted: #6b5b5b;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg, var(--bg), #fffafc 60%);
+    color: #222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+}
+
+/* Stage system */
+.stage{
+    display:none;
+    width:100%;
+    min-height:100vh;
+    animation:fadeIn 0.6s ease;
+}
+.stage.active{
+    display:flex;
+}
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+/* Stage 1 - Title page */
+#stage-1{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+    text-align:center;
+}
+
+.title-content h1{
+    font-family:'Playfair Display', serif;
+    font-size:clamp(2rem, 8vw, 5rem);
+    color:#6b3750;
+    margin:0 0 2rem;
+    font-weight:600;
+    line-height:1.2;
+}
+
+.title-content p{
+    font-size:clamp(1rem, 2vw, 1.3rem);
+    color:var(--muted);
+    max-width:600px;
+    margin-bottom:3rem;
+    line-height:1.6;
+}
+
+.next-btn{
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    border:none;
+    color:#fff;
+    padding:1rem 2.5rem;
+    font-size:1.05rem;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    transition:all 0.3s ease;
+    box-shadow:0 8px 20px rgba(247,168,184,0.3);
+}
+
+.next-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(247,168,184,0.4);
+}
+
+.heart{
+    position:fixed;
+    font-size:2rem;
+    pointer-events:none;
+    z-index:999;
+    top:-50px;
+    animation:fall var(--duration, 3s) ease-in forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Stage 2 - Countdown */
+#stage-2{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+    text-align:center;
+    padding-top:80px;
+}
+
+.countdown-container{
+    width:100%;
+    max-width:900px;
+}
+
+.countdown-title{
+    font-family:'Playfair Display', serif;
+    font-size:clamp(1.8rem, 5vw, 3.5rem);
+    color:#6b3750;
+    margin-bottom:3rem;
+    font-weight:600;
+}
+
+.countdown-display{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:1rem;
+    margin-bottom:2rem;
+    flex-wrap:wrap;
+}
+
+.countdown-number{
+    font-size:clamp(2rem, 8vw, 5rem);
+    font-weight:700;
+    color:var(--accent);
+    min-width:80px;
+    text-align:center;
+    background:linear-gradient(135deg, rgba(247,168,184,0.1), rgba(255,214,226,0.1));
+    border:2px solid var(--accent);
+    border-radius:12px;
+    padding:1rem;
+    backdrop-filter:blur(10px);
+}
+
+.countdown-colon{
+    font-size:clamp(2rem, 8vw, 5rem);
+    font-weight:700;
+    color:var(--accent);
+    animation:blink 1.2s ease-in-out infinite;
+}
+
+@keyframes blink{
+    0%, 49%{
+        opacity:1;
+    }
+    50%, 100%{
+        opacity:0.3;
+    }
+}
+
+.countdown-labels{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:2rem;
+    margin-bottom:3rem;
+    flex-wrap:wrap;
+}
+
+.label-item{
+    font-size:0.9rem;
+    color:var(--muted);
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    text-align:center;
+    min-width:80px;
+}
+
+/* Stage 3 - Timeline */
+#stage-3{
+    flex-direction:column;
+    padding-top:80px;
+}
+
+.stage-header{
+    text-align:center;
+    padding:2rem 1.25rem;
+}
+
+.stage-header h1{
+    font-family:'Playfair Display', serif;
+    font-size:clamp(1.6rem, 3vw, 2.4rem);
+    color:#6b3750;
+    margin:0;
+    font-weight:600;
+}
+
+.stage-header p{
+    color:var(--muted);
+    font-size:0.95rem;
+    margin:0.5rem 0 0;
+}
+.timeline-container{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 1rem 4rem;
+    width:100%;
+}
+
+/* timeline */
+.timeline{
+    position:relative;
+    padding:2rem 0;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:3px;
+    height:100%;
+    background:linear-gradient(180deg, var(--accent), var(--accent-2));
+}
+.timeline-item{
+    margin-bottom:3rem;
+    position:relative;
+}
+.timeline-item:nth-child(odd) .content{
+    margin-left:0;
+    margin-right:51%;
+    text-align:right;
+}
+.timeline-item:nth-child(even) .content{
+    margin-left:51%;
+    margin-right:0;
+    text-align:left;
+}
+.timeline-dot{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:16px;
+    height:16px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    border-radius:50%;
+    border:4px solid var(--bg);
+    box-shadow:0 0 0 3px var(--accent);
+    cursor:pointer;
+    transition:all 0.3s ease;
+    z-index:10;
+}
+.timeline-dot:hover{
+    transform:translateX(-50%) scale(1.4);
+}
+.content{
+    background:var(--card);
+    padding:1.5rem;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(107,55,80,0.08);
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+.content:hover{
+    box-shadow:0 12px 28px rgba(107,55,80,0.12);
+    transform:translateY(-2px);
+}
+.date{
+    font-family:'Playfair Display', serif;
+    font-size:1.1rem;
+    font-weight:600;
+    color:#6b3750;
+    margin:0 0 0.5rem;
+}
+.location{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin:0;
+}
+
+/* Featured timeline item - Navratri */
+.featured-item .content{
+    background:linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color:#fff;
+    box-shadow:0 0 20px rgba(255,23,68,0.5), 0 12px 28px rgba(107,55,80,0.12);
+    border:2px solid rgba(255,255,255,0.3);
+    animation:glow-pulse 2s ease-in-out infinite;
+}
+
+.featured-item .date{
+    color:#fff;
+    text-shadow:0 0 10px rgba(255,23,68,0.8);
+}
+
+.featured-item .location{
+    color:rgba(255,255,255,0.95);
+}
+
+.featured-item .content:hover{
+    box-shadow:0 0 30px rgba(255,23,68,0.7), 0 12px 28px rgba(107,55,80,0.15);
+    transform:translateY(-3px) scale(1.02);
+}
+
+.featured-item .timeline-dot{
+    background:linear-gradient(135deg, #ff1744, #ff5252);
+    box-shadow:0 0 0 3px #ff1744, 0 0 15px rgba(255,23,68,0.6);
+}
+
+.featured-item .timeline-dot:hover{
+    box-shadow:0 0 0 3px #ff1744, 0 0 25px rgba(255,23,68,0.8);
+}
+
+@keyframes glow-pulse{
+    0%, 100%{
+        box-shadow:0 0 20px rgba(255,23,68,0.5), 0 12px 28px rgba(107,55,80,0.12);
+    }
+    50%{
+        box-shadow:0 0 35px rgba(255,23,68,0.7), 0 12px 28px rgba(107,55,80,0.15);
+    }
+}
+
+/* preview popup */
+.preview-popup{
+    position:fixed;
+    background:var(--card);
+    border-radius:14px;
+    box-shadow:0 16px 48px rgba(107,55,80,0.2);
+    overflow:hidden;
+    pointerevents:none;
+    opacity:0;
+    transform:scale(0.8) translateY(10px);
+    transition:all 0.3s ease;
+    z-index:100;
+    pointer-events:none;
+}
+.preview-popup.show{
+    opacity:1;
+    transform:scale(1) translateY(0);
+    pointer-events:auto;
+}
+.preview-popup img{
+    width:240px;
+    height:240px;
+    object-fit:cover;
+    display:block;
+}
+.preview-info{
+    padding:0.75rem;
+    background:linear-gradient(135deg, rgba(247,168,184,0.1), rgba(255,214,226,0.1));
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--muted);
+}
+
+/* gallery modal */
+.gallery-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(10,10,10,0.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:2rem;
+}
+.gallery-modal.open{
+    display:flex;
+}
+.gallery-content{
+    background:var(--card);
+    border-radius:14px;
+    overflow:hidden;
+    max-width:1200px;
+    width:100%;
+    max-height:90vh;
+    display:flex;
+    flex-direction:column;
+}
+.gallery-header{
+    padding:1.5rem;
+    background:linear-gradient(135deg, rgba(247,168,184,0.1), rgba(255,214,226,0.1));
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.gallery-header h2{
+    margin:0;
+    font-family:'Playfair Display', serif;
+    color:#6b3750;
+}
+.gallery-close{
+    background:none;
+    border:0;
+    font-size:1.5rem;
+    color:var(--muted);
+    cursor:pointer;
+    padding:0;
+}
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px, 1fr));
+    gap:1rem;
+    padding:1.5rem;
+    overflow-y:auto;
+}
+.gallery-item{
+    aspect-ratio:1;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.gallery-item:hover{
+    transform:scale(1.05);
+    box-shadow:0 6px 16px rgba(107,55,80,0.12);
+}
+
+/* lightbox for clicked image */
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(10,10,10,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:300;
+    padding:2rem;
+}
+.lightbox.open{
+    display:flex;
+}
+.lightbox-content{
+    max-width:90vw;
+    max-height:90vh;
+    position:relative;
+}
+.lightbox-img{
+    max-width:100%;
+    max-height:100%;
+    border-radius:8px;
+}
+.lightbox-close{
+    position:absolute;
+    top:-40px;
+    right:0;
+    background:none;
+    border:0;
+    color:#fff;
+    font-size:2rem;
+    cursor:pointer;
+    padding:0;
+}
+
+.back-btn{
+    position:fixed;
+    left:20px;
+    top:20px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    border:none;
+    color:#fff;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    font-size:1.5rem;
+    cursor:pointer;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:500;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 12px rgba(247,168,184,0.3);
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 6px 16px rgba(247,168,184,0.4);
+}
+
+.back-btn.show{
+    display:flex;
+}
+
+/* Record Player - Vinyl */
+.record-player{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    z-index:450;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.record-player:hover .vinyl{
+    transform:scale(1.08);
+}
+
+.vinyl{
+    position:relative;
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #1a1a1a, #000);
+    box-shadow:0 12px 32px rgba(0,0,0,0.6), inset 0 2px 6px rgba(0,0,0,0.8), 0 0 0 3px #111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    transition:transform 0.3s ease;
+}
+
+.disc-image{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    z-index:3;
+}
+
+.disc-image.playing{
+    animation:spin-vinyl 3s linear infinite;
+}
+
+@keyframes spin-vinyl{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.vinyl-rings{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 50% 50%, transparent 30%, rgba(255,255,255,0.03) 32%, rgba(255,255,255,0.03) 34%, transparent 36%),
+        radial-gradient(circle at 50% 50%, transparent 44%, rgba(255,255,255,0.02) 46%, rgba(255,255,255,0.02) 48%, transparent 50%),
+        radial-gradient(circle at 50% 50%, transparent 58%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.02) 62%, transparent 64%),
+        radial-gradient(circle at 50% 50%, transparent 72%, rgba(255,255,255,0.03) 74%, rgba(255,255,255,0.03) 76%, transparent 78%),
+        radial-gradient(circle at 50% 50%, transparent 86%, rgba(255,255,255,0.02) 88%, rgba(255,255,255,0.02) 90%, transparent 92%);
+    z-index:2;
+}
+
+.vinyl-hole{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #333, #000);
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index:4;
+    box-shadow:inset 0 2px 4px rgba(0,0,0,0.9), inset 0 -1px 2px rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.8);
+}
+
+@media (max-width:768px){
+    /* Stage 1 - Title */
+    #stage-1{
+        padding:1.5rem;
+    }
+
+    .title-content h1{
+        font-size:clamp(1.6rem, 6vw, 3rem);
+        margin-bottom:1.5rem;
+    }
+
+    .title-content p{
+        font-size:clamp(0.9rem, 2vw, 1.1rem);
+        margin-bottom:2rem;
+    }
+
+    .next-btn{
+        padding:0.9rem 2rem;
+        font-size:1rem;
+    }
+
+    /* Stage 2 - Countdown */
+    #stage-2{
+        padding:1.5rem;
+        padding-top:70px;
+    }
+
+    .countdown-container{
+        width:100%;
+    }
+
+    .countdown-title{
+        font-size:clamp(1.3rem, 4vw, 2.5rem);
+        margin-bottom:2rem;
+    }
+
+    .countdown-display{
+        gap:0.5rem;
+        margin-bottom:1.5rem;
+    }
+
+    .countdown-number{
+        font-size:clamp(1.5rem, 5vw, 2.5rem);
+        min-width:60px;
+        padding:0.75rem;
+        border-width:1.5px;
+    }
+
+    .countdown-colon{
+        font-size:clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .countdown-labels{
+        gap:1rem;
+        margin-bottom:2rem;
+    }
+
+    .label-item{
+        font-size:0.75rem;
+        min-width:60px;
+    }
+
+    /* Stage 3 - Timeline */
+    #stage-3{
+        padding-top:70px;
+    }
+
+    .stage-header{
+        padding:1.5rem 1rem;
+    }
+
+    .stage-header h1{
+        font-size:clamp(1.3rem, 3vw, 2rem);
+    }
+
+    .timeline-container{
+        padding:0 1rem 2rem;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .timeline-item:nth-child(odd) .content,
+    .timeline-item:nth-child(even) .content{
+        margin-left:60px;
+        margin-right:0;
+        text-align:left;
+    }
+
+    .timeline-dot{
+        left:20px;
+    }
+
+    .content{
+        padding:1rem;
+    }
+
+    .date{
+        font-size:1rem;
+    }
+
+    .location{
+        font-size:0.85rem;
+    }
+
+    /* Gallery */
+    .gallery-grid{
+        grid-template-columns:repeat(auto-fill, minmax(120px, 1fr));
+        gap:0.75rem;
+        padding:1rem;
+    }
+
+    .gallery-header{
+        padding:1rem;
+    }
+
+    .gallery-header h2{
+        font-size:1.1rem;
+    }
+
+    /* Record Player */
+    .record-player{
+        bottom:20px;
+        right:20px;
+    }
+
+    .vinyl{
+        width:95px;
+        height:95px;
+    }
+
+    /* Back Button */
+    .back-btn{
+        width:40px;
+        height:40px;
+        font-size:1.2rem;
+        left:15px;
+        top:15px;
+    }
+
+    /* Lightbox */
+    .lightbox-close{
+        top:-35px;
+        font-size:1.5rem;
+    }
+}
+
+@media (max-width:480px){
+    /* Extra small devices */
+    #stage-1{
+        padding:1rem;
+    }
+
+    .title-content h1{
+        font-size:clamp(1.3rem, 5vw, 2.2rem);
+        margin-bottom:1rem;
+    }
+
+    .title-content p{
+        margin-bottom:1.5rem;
+        font-size:0.95rem;
+    }
+
+    .next-btn{
+        padding:0.85rem 1.5rem;
+        font-size:0.95rem;
+    }
+
+    #stage-2{
+        padding:1rem;
+        padding-top:65px;
+    }
+
+    .countdown-title{
+        margin-bottom:1.5rem;
+    }
+
+    .countdown-display{
+        gap:0.3rem;
+        margin-bottom:1rem;
+    }
+
+    .countdown-number{
+        font-size:clamp(1.2rem, 4vw, 2rem);
+        min-width:55px;
+        padding:0.6rem;
+    }
+
+    .countdown-colon{
+        font-size:clamp(1.2rem, 4vw, 2rem);
+    }
+
+    .countdown-labels{
+        gap:0.75rem;
+    }
+
+    .label-item{
+        font-size:0.7rem;
+        min-width:55px;
+    }
+
+    .timeline-container{
+        padding:0 0.75rem 1.5rem;
+    }
+
+    .stage-header{
+        padding:1rem 0.75rem;
+    }
+
+    .stage-header h1{
+        font-size:clamp(1.1rem, 3vw, 1.8rem);
+    }
+
+    .timeline-item{
+        margin-bottom:2rem;
+    }
+
+    .timeline-item .content{
+        padding:0.9rem;
+    }
+
+    .date{
+        font-size:0.95rem;
+        margin-bottom:0.3rem;
+    }
+
+    .location{
+        font-size:0.8rem;
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(3, 1fr);
+        gap:0.5rem;
+        padding:0.75rem;
+    }
+
+    .vinyl{
+        width:85px;
+        height:85px;
+    }
+
+    .back-btn{
+        width:38px;
+        height:38px;
+        font-size:1rem;
+    }
+}

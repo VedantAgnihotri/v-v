@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Back button -->
+    <button id="back-btn" class="back-btn" aria-label="Go back">←</button>
+
+    <!-- Record Player -->
+    <div id="record-player" class="record-player" title="Click to play/pause">
+        <div class="vinyl">
+            <img id="disc-image" class="disc-image" src="" alt="Album Cover">
+            <div class="vinyl-rings"></div>
+            <div class="vinyl-hole"></div>
+        </div>
+    </div>
+
+    <!-- Hidden audio element -->
+    <audio id="audio-player"></audio>
+
+    <!-- Stage 1: Title Page -->
+    <div id="stage-1" class="stage active">
+        <div class="title-content">
+            <h1>our corner of the internet</h1>
+            <p>everything here reminds me of you. (quite literally)</p>
+            <button class="next-btn" id="btn-to-stage-2">Click here dummy</button>
+        </div>
+    </div>
+
+    <!-- Stage 2: Countdown -->
+    <div id="stage-2" class="stage">
+        <div class="countdown-container">
+            <h2 class="countdown-title">How long youve been stuck with me</h2>
+            <div class="countdown-display">
+                <div class="countdown-number" id="months">0</div>
+                <div class="countdown-colon">:</div>
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-colon">:</div>
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-colon">:</div>
+                <div class="countdown-number" id="minutes">0</div>
+            </div>
+            <div class="countdown-labels">
+                <span class="label-item">Months</span>
+                <span class="label-item">Days</span>
+                <span class="label-item">Hours</span>
+                <span class="label-item">Minutes</span>
+            </div>
+            <button class="next-btn" id="btn-to-stage-3">Next!!!!!!!!!!!!!</button>
+        </div>
+    </div>
+
+    <!-- Stage 3: Timeline -->
+    <div id="stage-3" class="stage">
+        <div class="stage-header">
+            <h1>Our Timeline</h1>
+            <p>best days of my life fr</p>
+        </div>
+        <section aria-label="Memory timeline">
+            <div class="timeline-container">
+                <div id="timeline" class="timeline">
+                    <!-- timeline items injected by script -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Preview popup on hover -->
+    <div id="preview-popup" class="preview-popup">
+        <img id="preview-img" src="" alt="">
+        <div class="preview-info" id="preview-info">Hover to preview</div>
+    </div>
+
+    <!-- Gallery modal -->
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-content">
+            <div class="gallery-header">
+                <h2 id="gallery-title">Gallery</h2>
+                <button class="gallery-close" aria-label="Close gallery">✕</button>
+            </div>
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- gallery items injected -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox for full image view -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <img id="lightbox-img" class="lightbox-img" src="" alt="">
+            <button class="lightbox-close" aria-label="Close">✕</button>
+        </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+    <script src="./music.js" defer></script>
+</body>
+</html>
