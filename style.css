@@ -1188,38 +1188,48 @@ body{
 
 @media (max-width:768px){
     #stage-4{
-        padding-top:70px;
+        padding-top:65px;
     }
 
     .canvas-toolbar{
-        padding:0.75rem;
-        gap:0.5rem;
+        padding:0.5rem 0.6rem;
+        gap:0.3rem;
+        flex-wrap:wrap;
     }
 
     .toolbar-section{
-        gap:0.3rem;
+        gap:0.25rem;
+        flex-wrap:wrap;
     }
 
     .toolbar-btn{
-        padding:0.5rem 0.8rem;
+        padding:0.45rem 0.7rem;
         font-size:0.8rem;
     }
 
     .toolbar-label{
-        font-size:0.8rem;
+        font-size:0.75rem;
+        white-space:nowrap;
     }
 
     .text-input{
-        padding:0.5rem;
-        font-size:0.85rem;
+        padding:0.45rem 0.6rem;
+        font-size:0.8rem;
+        flex:1;
+        min-width:110px;
     }
 
     .color-picker{
-        width:45px;
-        height:35px;
+        width:42px;
+        height:34px;
     }
 
     .file-input{
+        font-size:0.75rem;
+        padding:0.3rem;
+    }
+
+    .sync-status{
         font-size:0.75rem;
     }
 
