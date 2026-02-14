@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stages = document.querySelectorAll('.stage');
   const btnToStage2 = document.getElementById('btn-to-stage-2');
   const btnToStage3 = document.getElementById('btn-to-stage-3');
+  const btnToStage4 = document.getElementById('btn-to-stage-4');
   const backBtn = document.getElementById('back-btn');
   
   let countdownInterval = null;
@@ -36,27 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  let firstClickStage1 = true;
-
   btnToStage2.addEventListener('click', () => {
-    if (firstClickStage1) {
-      // First click: change text and trigger animation
-      btnToStage2.textContent = 'MUEHEHEHHEEH';
-      dropHearts();
-      firstClickStage1 = false;
-    } else {
-      // Second click: proceed to stage 2
-      dropHearts();
-      setTimeout(() => {
-        goToStage(2);
-      }, 500);
-    }
+    dropHearts();
+    setTimeout(() => {
+      goToStage(2);
+    }, 300);
   });
 
   btnToStage3.addEventListener('click', () => {
     dropHearts();
     setTimeout(() => {
       goToStage(3);
+    }, 300);
+  });
+
+  btnToStage4.addEventListener('click', () => {
+    dropHearts();
+    setTimeout(() => {
+      goToStage(4);
     }, 300);
   });
 

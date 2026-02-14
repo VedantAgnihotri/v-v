@@ -29,7 +29,7 @@
     <div id="stage-1" class="stage active">
         <div class="title-content">
             <h1>our corner of the internet</h1>
-            <p>everything here reminds me of you. (quite literally)</p>
+            <p>everything about us</p>
             <button class="next-btn" id="btn-to-stage-2">Click here dummy</button>
         </div>
     </div>
@@ -70,6 +70,39 @@
                 </div>
             </div>
         </section>
+        <div style="text-align: center; padding: 2rem;">
+            <button class="next-btn" id="btn-to-stage-4">Go to Canvas</button>
+        </div>
+    </div>
+
+    <!-- Stage 4: Blank Canvas Page -->
+    <div id="stage-4" class="stage">
+        <div class="canvas-toolbar">
+            <div class="toolbar-section">
+                <label for="text-input" class="toolbar-label">Add Text:</label>
+                <input type="text" id="text-input" placeholder="Type something..." class="text-input">
+                <button id="add-text-btn" class="toolbar-btn">Add</button>
+            </div>
+            
+            <div class="toolbar-section">
+                <label for="text-color" class="toolbar-label">Color:</label>
+                <input type="color" id="text-color" value="#000000" class="color-picker">
+            </div>
+
+            <div class="toolbar-section">
+                <label for="image-upload" class="toolbar-label">Add Image:</label>
+                <input type="file" id="image-upload" accept="image/*" class="file-input">
+                <button id="upload-btn" class="toolbar-btn">Upload</button>
+            </div>
+
+            <div class="toolbar-section">
+                <span class="sync-status" id="sync-status">✓ Ready</span>
+            </div>
+        </div>
+
+        <div id="canvas-container" class="canvas-container">
+            <!-- Text and images added here -->
+        </div>
     </div>
 
     <!-- Preview popup on hover -->
@@ -99,7 +132,13 @@
         </div>
     </div>
 
-    <script src="./script.js" defer></script>
-    <script src="./music.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="./script.js"></script>
+    <script src="./music.js"></script>
+    <script src="canvas.js"></script>
+</body>
 </body>
 </html>
